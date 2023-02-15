@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard-AllStudents</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="./css/framework.css" />
+    <link rel="stylesheet" href="./css/master.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
+
+
+    <link rel="icon" type="image/x-icon" href="./imgs/logo.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+
+
+      body{
+        min-width: 1200px !important;
+      }
+
+
+      @font-face {
+        font-family: myFirstFont;
+        src: url(./Fonts/Ethnocentric.ttf);
+      }
+
+      
+      /* Table Styles */
+
+      .table-wrapper{
+          box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+      }
+
+      .fl-table {
+          border-radius: 5px;
+          font-size: 17px;
+          font-weight: normal;
+          border: none;
+          border-collapse: collapse;
+          width: 100%;
+          max-width: 100%;
+          white-space: nowrap;
+          background-color: white;
+      }
+
+      .fl-table td{
+          text-align: center;
+          padding: 3px;
+          border: 2px solid #0a1951;
+      }
+
+
+      .fl-table th {
+          text-align: center;
+          padding: 8px;
+          border: 2px solid #0a1951;
+      }
+
+
+      .fl-table td {
+          border-right: 1px solid #f8f8f8;
+          font-size: 14px;
+          font-family: 'Cairo';
+      }
+
+
+      .fl-table thead th {
+          color: #ffffff;
+          background: #0a1951;
+      }
+
+      .fl-table tr {
+        border: 1px solid rgb(0, 0, 0);
+      }
+
+      /* Responsive */
+
+      
+
+
+
+      .CompanyName::before{
+        content: "Digital vision for information technology";
+        position: relative;
+        bottom: -28px;
+        left: 300px;
+        font-family: myFirstFont;
+        color: #397eaf;
+        font-size: 13px;
+      }
+
+
+
+
+      .OrderActiveNote{
+        width: 98%;
+        border: 2px solid black;
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 20px;
+      }
+
+
+      .OrderActiveNoteTwo{
+        width: 98%;
+        border: 2px solid black;
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 20px;
+      }
+
+
+      .whoDetalls{
+        margin: 10px;
+        font-size: 20px;
+        background: white;
+        color: black;
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 6px;
+        text-align: end;
+        font-weight: bold;
+      }
+
+
+      .limitToFirst{
+        margin: 10px;
+        font-size: 20px;
+        background: white;
+        color: black;
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 6px;
+        text-align: end;
+        font-weight: bold;
+      }
+
+
+      @media (max-width: 768px) {
+
+        .nameOfUserLogIn{
+          display: none;
+        }
+        
+      }
+
+
+
+    </style>
+
+  </head>
+  <body>
+    <div class="page d-flex">
+      
+      <div class="content w-full">
+        
+        <!-- Start Head -->
+        <div class="head bg-white between-flex" style="padding: 0px 10px 15px; background: #f1f5f9;">
+          <div class="p-relative">
+            <h1 class="p-relative" style="text-align: center;">Students</h1>
+          </div>
+          <div class="p-relative">
+            <h2 style="margin: 20px 0px;">Hello <span id="AdminName" style="color: #397eaf; text-align: center;"></span></h2>
+          </div>
+        </div>
+        <!-- End Head -->
+
+        <div style="display: flex;align-items: center;justify-content: space-between; margin: 0px 20px;">
+          <div style="display: flex;">
+
+            <div>
+              <select class="limitToFirst">
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="10000">10000</option>
+              </select>
+              <select class="whoDetalls">
+              </select>
+              <!-- <input type="text" placeholder="Search With Student Name"  class="addOrderInput searchBtn" style="max-width: 300px; font-size: 20px;"> -->
+              
+            </div>
+  
+            <div class="SearchDiv" style="background: #0a1951; border-radius: 6px; border: none; padding: 5px;">
+              <select dir="rtl" class="SearchField" style="margin: 5px 0px;font-size: 20px;background: white;color: black;padding: 5px;border: 2px solid black;border-radius: 6px;text-align: end;font-weight: bold;">
+                <option value="date">Date</option>
+                <option value="name">Name</option>
+                <option value="phone1">Mobile no</option>
+                <option value="phone2">Mobile no 2</option>
+                <option value="by">By</option>
+                <option value="state">State</option>
+                <option value="user">User</option>
+              </select>
+              <input type="text" placeholder="Search text" class="addOrderInput SearchInput" style="max-width: 150px; font-size: 20px;">
+              <button class="SearchBtn" style="cursor: pointer; font-size: 20px;background: white;color: black;padding: 5px;border: 2px solid black;border-radius: 6px;text-align: end;font-weight: bold;">Search</button>
+            </div>
+
+          </div>
+
+          <button style="font-size: 18px; font-family:cairo; cursor:pointer; width: 120px; margin: 20px; border-radius: 10px; background: #0a1951; color: white; padding: 5px 0px; font-weight: 600;" class="addNewOrder">Add Student</button>
+        </div>
+
+        <div style="overflow: auto; margin: 20px; border-right: 2px solid black;">
+
+          <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Student Name</th>
+                    <th>Mobile No</th>
+                    <th>Mobile No2</th>
+                    <th>Question Details</th>
+                    <th>By</th>
+                    <th>State</th>
+                    <th>User</th>
+                    <th>Type</th>
+                    <th>Note1</th>
+                    <th>Req1</th>
+                    <th>Date1</th>
+                    <th>Note2</th>
+                    <th>Req2</th>
+                    <th>Date2</th>
+                    <th>Note3</th>
+                    <th>Req3</th>
+                    <th>Date3</th>
+                    <th>More</th>
+                </tr>
+                </thead>
+
+                <tbody id="AllOrders">
+                
+                <tbody>
+            </table>
+          </div>
+          
+        </div>
+
+      </div>
+
+
+      <!-- Start Sidebar can copy it to anthor file -->
+      <div class="sidebar bg-white p-20 p-relative">
+        <div class="nameOfUserLogIn">
+          <i class="fa-regular fa-circle-user fa-fw" style="font-weight: bold;font-size: 50px;width: 100%;"></i>
+        </div>
+        <ul>
+          
+          <li>
+
+            <a class="Orders-Accepted active d-flex align-center fs-14 c-black rad-6 p-10" style="display: flex; justify-content: end; cursor: pointer;" href="Dashboard-Accepted.html">
+              <span style="font-weight: bold; font-size:20px;">Students</span>
+              <i class="fa-regular fa-circle-user fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: green; border-radius: 50%;"></i>
+            </a>
+
+            <a class="Orders-Accepted active d-flex align-center fs-14 c-black rad-6 p-10" style="display: flex; justify-content: end; cursor: pointer;" href="Dashboard-Suppliers.html">
+              <span style="font-weight: bold; font-size:20px;">Teachers</span>
+              <i class="fa-sharp fa-solid fa-graduation-cap" style="font-weight: bold; font-size:20px; margin-left: 10px; color: #000000;"></i>
+            </a>
+
+            <a class="Orders-Accepted active d-flex align-center fs-14 c-black rad-6 p-10" style="display: flex; justify-content: end; cursor: pointer; background: rgba(137, 8, 8, 0.676); color: white;" id="logOut-digital">
+              <span style="font-weight: bold; font-size:20px;">Logout</span>
+              <i class="fas fa-sign-out-alt fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: white;"></i>
+            </a>
+
+          </li>
+          
+        </ul>
+      </div>
+      <!-- End Sidebar can copy it to anthor file -->
+
+    </div>
+  </body>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+
+  <script type="module">
+
+
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js';
+  import { getFirestore, collection, query, where, getDocs,getDoc, setDoc, addDoc, doc,deleteDoc,onSnapshot,orderBy, limit,startAt,endAt  } from 'https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js';
+
+  // TODO: Replace the following with your app's Firebase project configuration
+  
+  import { firebaseConfig } from './firebase.js';
+
+  firebase.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let X;
+
+  async function getCit(db,X) {
+  const citiesCol = collection(db,`${X}`);
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
+  };
+
+
+
+
+/* start return All Orders Accepted */
+
+let AllOrdersAccepted;
+
+async function forAllOrdersAccepted(X){
+
+  const q = query(collection(db, "Persons"), where('isAccepted', '==', true), orderBy("dateNow","desc"), limit(X||20));
+  
+
+  const querySnapshot = await getDocs(q);
+  const cityList = querySnapshot.docs.map(doc => doc.data());
+  AllOrdersAccepted=cityList;
+
+  return AllOrdersAccepted;
+};
+
+/* end return All Orders Accepted */
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+document.querySelector("body > div > div.sidebar.bg-white.p-20.p-relative > ul > li > a:nth-child(1)").style.background="rgb(176 206 226 / 85%)"
+
+
+
+
+
+
+
+
+
+/*start login cods*/
+
+
+
+/* 02 start get AllAccounts */
+
+let AllAccounts;
+let AllTeachers;
+await getCit(db, 'accounts').then(async (e) => {
+  AllAccounts = e;
+  AllTeachers=AllAccounts.filter(el=>el.isAdmin==false);
+})
+
+async function getUserDataWithId(id){
+  return AllAccounts.find(e=>e.id==id);
+}
+
+/* 02 end get All Accounts */
+
+
+
+/* 04 start check and get user doc */
+
+let mainPersonData;
+let docId = await localStorage.getItem("doc-digital-id");
+
+if(docId!==null&&docId.trim()!==''){
+    // document.querySelector('.profile-btn').dataset.personid=docId;
+    mainPersonData=await getUserDataWithId(docId);
+
+    if(mainPersonData.isAdmin==false){
+      location.href="./Dashboard-notAdmin.html";
+    };
+
+    document.querySelector("#AdminName").textContent=`${mainPersonData.username}..`;
+} else {
+  location.href="./login/login.html"
+}
+
+/* 04 end check and get user doc */
+
+
+
+document.querySelector("#logOut-digital").addEventListener("click",()=>{
+
+  localStorage.setItem("doc-digital-id","");
+  location.href="./login/login.html";
+
+});
+
+
+/*end login cods*/
+
+
+
+
+
+/* 2 start function to get differnce between data now */
+function getDiffDate(oldDate){
+        
+    var starts = moment(`${oldDate}`);
+    var ends   = moment();
+
+    var duration = moment.duration(ends.diff(starts));
+
+    // with ###moment precise date range plugin###
+    // it will tell you the difference in human terms
+
+    var diff = moment.preciseDiff(starts, ends, true); 
+    // example: { "years": 2, "months": 7, "days": 0, "hours": 6, "minutes": 29, "seconds": 17, "firstDateWasLater":  false }
+
+
+    // or as string:
+    var diffHuman = moment.preciseDiff(starts, ends);
+    // example: 2 years 7 months 6 hours 29 minutes 17 seconds
+
+    let diffDate=diff;
+
+    if(diffDate.years!==0){
+        diffDate={
+            "diffDateNum": diffDate.years,
+            "diffDateName": "سنة",
+        };
+    } else if(diff.months!==0){
+        diffDate={
+            "diffDateNum": diffDate.months,
+            "diffDateName": "شهر",
+        };
+    } else if(diff.days!==0){
+        diffDate={
+            "diffDateNum": diffDate.days,
+            "diffDateName": "يوم",
+        };
+    } else if(diff.hours!==0){
+        diffDate={
+            "diffDateNum": diffDate.hours,
+            "diffDateName": "ساعة",
+        };
+    } else if(diff.minutes!==0){
+        diffDate={
+            "diffDateNum": diffDate.minutes,
+            "diffDateName": "دقيقة",
+        };
+    } else {
+        diffDate={
+            "diffDateNum": 0,
+            "diffDateName": "الان",
+        };
+    }
+
+    let stringDiffDate = `منذ ${diffDate.diffDateNum + " " + diffDate.diffDateName}`;
+    // منذ 1 سنة
+
+    if(diffDate.diffDateName=="الان"){
+      stringDiffDate="الان";
+    }
+    
+    // diffDate => json like {diffDateNum: 1, diffDateName: 'سنة'}
+
+    return stringDiffDate;
+}
+
+// console.log(getDiffDate("2022/1/1 => 5:55 PM"));
+
+/* 2 end function to get differnce between data now */
+
+
+
+
+
+
+
+
+
+/* 3 start get all Orders */
+let AllPersonsData;
+
+
+
+async function getAllOrdersAccepted(X){
+  
+  forAllOrdersAccepted(X).then(AllOrdersAccepted=>{
+        let i = 0;
+  
+        AllPersonsData=AllOrdersAccepted;
+  
+        if(AllOrdersAccepted.length!==0){
+          document.querySelector("#AllOrders").innerHTML="";
+        }
+
+
+        document.querySelector(".whoDetalls").innerHTML=`
+        <option value="All">
+            All
+        </option>
+        `
+        let AllUsersHaveStudents=[];
+        AllPersonsData.forEach((e)=>{
+          AllUsersHaveStudents.push(e.user)
+        });
+
+        AllUsersHaveStudents=new Set(AllUsersHaveStudents);
+       
+
+        AllUsersHaveStudents.forEach(e=>{
+
+          document.querySelector(".whoDetalls").innerHTML+=`
+          <option value="${e}">
+            ${e}
+          </option>
+                
+          `;
+        })
+  
+  
+        AllOrdersAccepted.forEach(el=>{
+            let I=0;
+            if(el.name!==""&&el.phone1!==""){
+              i++;
+              document.querySelector("#AllOrders").innerHTML+=`
+  
+
+                  <tr data-id="${el.id}" style="font-weight: 600;">
+
+                    <td class="Student-Id">#${i}</td>
+                    <td class="Student-Date">${el.date}</td>
+                    <td class="Student-Time">${el.time}</td>
+                    <td class="Student-Name">${el.name}</td>
+                    <td class="Student-Phone1">${el.phone1}</td>
+                    <td class="Student-Phone2">${el.phone2}</td>
+                    <td class="Student-Question-Details" style="max-width: 100px!important;">
+                      <p style="white-space: break-spaces;">${el.note}</p>
+                    </td>
+                    <td class="Student-By">${el.by}</td>
+                    <td class="Student-State">${el.state}</td>
+                    <td class="Student-User">${el.user}</td>
+                    <td class="Student-Type">${el.type}</td>
+
+                    <td class="Student-Note1">${el.more[0].Note1}</td>
+                    <td class="Student-Note1">${el.more[0].Req1}</td>
+                    <td class="Student-Note1">${el.more[0].Date1}</td>
+
+                    <td class="Student-Note1">${el.more[0].Note2}</td>
+                    <td class="Student-Note1">${el.more[0].Req2}</td>
+                    <td class="Student-Note1">${el.more[0].Date2}</td>
+
+                    <td class="Student-Note1">${el.more[0].Note3}</td>
+                    <td class="Student-Note1">${el.more[0].Req3}</td>
+                    <td class="Student-Note1">${el.more[0].Date3}</td>
+
+
+                    <td class="Student-More-Info" style="padding: 10px;">
+                      
+                      <a style="position: relative; top: -3px;">
+                        <i title="تعديل" class="fa-solid fa-pen-to-square editStudent" data-id="${el.id}" style="font-size: 15px; color: #e0dfdf; background: #233245; border-radius: 50%; padding: 5px 5px; cursor: pointer;"></i>
+                      </a>
+
+                      <a style="position: relative; top: -3px;">
+                        <i title="حذف" class="fa-solid fa-trash removeStudent" data-id="${el.id}" style="font-size: 15px; color: white; background: darkred; border-radius: 50%; padding: 6px 8px; cursor: pointer;"></i>
+                      </a>
+
+                      <a href="http://wa.me/+20${el.phone1}" target="_blank">
+                        <i class="fa-brands fa-whatsapp"  data-id="${el.id}" style="font-size: 25px; color: white; background: green; border-radius: 50%; padding: 3px 4px; cursor: pointer;"></i>
+                      </a>
+                      
+                    </td>
+                    
+        
+                  </tr>
+              
+              
+              `;
+  
+            }
+            
+        });
+  
+  
+    });
+
+}
+
+
+/* 3 End get all Orders */
+
+
+
+
+
+
+
+
+
+
+/* 4 Start set Orders Accepted and orders archived*/
+
+window.onclick=(e)=>{
+
+
+
+
+
+
+
+/* start student edit */
+
+if([...e.target.classList].includes("editStudent")){
+
+  let orderId=e.target.dataset.id;
+  let orderData=AllPersonsData.find(el=>el.id==`${orderId}`);
+
+  Swal.fire({
+    title: ' Student info edit ',
+    html: `
+      
+      
+      <div class="mainForm" style="overflow-y: hidden; overflow-c: scroll; font-size: 17px!important; font-family: 'Cairo', sans-serif; font-weight: bold!important; text-align: start;">
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div>
+              <label for="date">Date</label>
+              <input style="width: 98%;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="date" value="${orderData.date}">
+
+              <label for="phone1">Student Phone1</label>
+              <input style="width: 98%;" class="addOrderInput" type="number" placeholder="requird" dir="auto" autocomplete="off" id="phone1" value="${orderData.phone1}">
+            </div>
+            <div>
+              <label for="name">Student Name</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" dir="auto" autocomplete="off" id="name" value="${orderData.name}">
+
+              <label for="phone2">Student Phone2</label>
+              <input style="width: 98%;" class="addOrderInput" type="number" placeholder="" dir="auto" autocomplete="off" id="phone2" value="${orderData.phone2}">
+            </div>
+          </div>
+
+          <label for="note">Question Details</label>
+          <textarea type="text" dir="rtl" autocomplete="off" id="note" value="" rows="4" style="width: 98%; font-size: 20px; border: 2px solid black; border-radius: 6px;">${orderData.note}</textarea>
+          
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width: 50%;">
+
+              <label for="by">By</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" placeholder="" dir="auto" autocomplete="off" id="by" value="${orderData.by}">
+
+              <label for="user">User</label>
+              <select class="addOrderInput teachers" style="width: 98%; font-size: 24px;" name="cars" id="user" value="${orderData.user}">
+                ${eval(
+                  setTimeout(showTeachers, 1000)
+                )}
+              </select>
+            
+            </div>
+            <div style="width: 50%;">
+              
+              <label for="state">State</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" dir="auto" autocomplete="off" id="state" value="${orderData.state}">
+              
+              <label for="type">Type</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" dir="auto" autocomplete="off" id="type" value="${orderData.type}">
+              
+            </div>
+          </div>
+
+
+          <br>
+
+
+
+          <div style="width: 100%;">
+            <label for="Note1">Note1</label>
+            <input style="width: 98%; font-size: 20px;" class="addOrderInput" type="text" dir="auto" autocomplete="off" id="Note1" value="${orderData.more[0].Note1}">
+          </div>
+
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width:50%;">
+              <label for="Req1">Req1</label>
+              <select class="addOrderInput" style="width: 98%; font-size: 20px;" name="cars" id="Req1">
+                <option value="${orderData.more[0].Req1}">${orderData.more[0].Req1}</option>
+                <option value="A1">A1</option>
+                <option value="B2">B2</option>
+                <option value="C3">C3</option>
+                <option value="D4">D4</option>
+              </select>
+            </div>
+
+            <div style="width:50%;">
+              <label for="Date1">Date1</label>
+              <input style="width: 98%; font-size: 18px;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="Date1" value="${orderData.more[0].Date1}">
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <div style="width: 100%;">
+            <label for="Note2">Note2</label>
+            <input style="width: 98%; font-size: 20px;" class="addOrderInput" type="text" dir="auto" autocomplete="off" id="Note2" value="${orderData.more[0].Note2}">
+          </div>
+
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width:50%;">
+              <label for="Req2">Req2</label>
+              <select class="addOrderInput" style="width: 98%; font-size: 20px;" name="cars" id="Req2">
+                <option value="${orderData.more[0].Req2}">${orderData.more[0].Req2}</option>
+                <option value="A1">A1</option>
+                <option value="B2">B2</option>
+                <option value="C3">C3</option>
+                <option value="D4">D4</option>
+              </select>
+            </div>
+
+            <div style="width:50%;">
+              <label for="Date2">Date2</label>
+              <input style="width: 98%; font-size: 18px;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="Date2" value="${orderData.more[0].Date2}">
+            </div>
+          </div>
+
+          
+
+
+
+
+
+
+          <div style="width: 100%;">
+            <label for="Note3">Note3</label>
+            <input style="width: 98%; font-size: 20px;" class="addOrderInput" type="text" dir="auto" autocomplete="off" id="Note3" value="${orderData.more[0].Note3}">
+          </div>
+
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width:50%;">
+              <label for="Req3">Req3</label>
+              <select class="addOrderInput" style="width: 98%; font-size: 20px;" name="cars" id="Req3">
+                <option value="${orderData.more[0].Req3}">${orderData.more[0].Req3}</option>
+                <option value="A1">A1</option>
+                <option value="B2">B2</option>
+                <option value="C3">C3</option>
+                <option value="D4">D4</option>
+              </select>
+            </div>
+
+            <div style="width:50%;">
+              <label for="Date3">Date3</label>
+              <input style="width: 98%; font-size: 18px;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="Date3" value="${orderData.more[0].Date3}">
+            </div>
+          </div>
+
+
+          
+      </div>
+      
+      
+    `,
+      
+    confirmButtonText: 'Save',
+  }).then((result) => {    
+      if (result.isConfirmed) {
+
+          let date = document.querySelector("#date").value;
+          let name=document.querySelector("#name").value;
+          let phone1=document.querySelector("#phone1").value;
+          let phone2=document.querySelector("#phone2").value;
+          let note=document.querySelector("#note").value;
+          let by=document.querySelector("#by").value;
+          let state=document.querySelector("#state").value;
+          let type=document.querySelector("#type").value;
+          let user = document.querySelector("#user").value
+          let more=[
+            {
+              Note1: document.querySelector("#Note1").value,
+              Req1: document.querySelector("#Req1").value,
+              Date1: document.querySelector("#Date1").value,
+              Note2: document.querySelector("#Note2").value,
+              Req2: document.querySelector("#Req2").value,
+              Date2: document.querySelector("#Date2").value,
+              Note3: document.querySelector("#Note3").value,
+              Req3: document.querySelector("#Req3").value,
+              Date3: document.querySelector("#Date3").value,
+            }
+          ]
+
+          
+          let id = orderData.id;
+
+          if(name.trim()!==""&&phone1.trim()!==""&&by.trim()!==""&&state.trim()!==""&&type.trim()!==""){
+            AddNewStudent(name,phone1,phone2,note,by,state,type,date,user);
+          } else{
+            Swal.fire('error please enter value in required fileds', '', 'error')
+          }
+
+          
+          function AddNewStudent(name,phone1,phone2,note,by,state,type,date,user){
+            
+            setDoc(doc(db,"Persons",id), {
+              ...orderData,
+              user: user,
+              id: id,
+              name: name,
+              phone1: phone1,
+              phone2: phone2,
+              note: note,
+              by: by,
+              state: state,
+              more: more,
+              type: type,
+              date: date,
+            }).then(e=>{
+           
+              
+
+            });
+
+          };
+          
+      };
+  });
+
+
+
+};
+/* end student edit */
+
+
+
+
+
+/* start remove student */
+if([...e.target.classList].includes("removeStudent")){
+
+
+  Swal.fire({
+  title: 'Are you want to delet it?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      let orderId=e.target.dataset.id;
+      let orderData=AllPersonsData.find(el=>el.id==`${orderId}`);
+
+      let orderDoc=doc(db, "Persons", orderId);
+
+      deleteDoc(orderDoc);
+
+      e.target.parentNode.parentNode.parentNode.remove();
+
+      Swal.fire(
+        'Deleted!',
+        'Your order has been deleted.',
+        'success'
+      );
+
+    }
+  })
+
+
+};
+/* end remove order */
+
+
+
+};
+
+/* 4 end set Orders Accepted and orders archived*/
+
+
+
+
+
+
+
+
+
+
+
+/* 5 start add new student */
+
+document.querySelector(".addNewOrder").addEventListener("click",()=>{
+
+
+  Swal.fire({
+      title: ' Add New Student ',
+      html: `
+      
+      
+      <div class="mainForm" style="overflow-y: hidden; overflow-c: scroll; font-size: 17px!important; font-family: 'Cairo', sans-serif; font-weight: bold!important; text-align: start;">
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div>
+              <label for="date">Date</label>
+              <input style="width: 98%;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="date" value="">
+
+              <label for="phone1">Student Phone1</label>
+              <input style="width: 98%;" class="addOrderInput" type="number" placeholder="requird" dir="auto" autocomplete="off" id="phone1" value="">
+            </div>
+            <div>
+              <label for="name">Student Name</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" dir="auto" autocomplete="off" id="name" value="">
+
+              <label for="phone2">Student Phone2</label>
+              <input style="width: 98%;" class="addOrderInput" type="number" placeholder="" dir="auto" autocomplete="off" id="phone2" value="">
+            </div>
+          </div>
+
+          <label for="note">Question Details</label>
+          <textarea type="text" dir="rtl" autocomplete="off" id="note" value="" rows="4" style="width: 98%; font-size: 20px; border: 2px solid black; border-radius: 6px;"></textarea>
+          
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width: 50%;">
+
+              <label for="by">By</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" placeholder="" dir="auto" autocomplete="off" id="by" value="">
+
+              <label for="user">User</label>
+              <select class="addOrderInput teachers" style="width: 98%; font-size: 24px;" name="cars" id="user">
+                ${eval(
+                  setTimeout(showTeachers, 1000)
+                )}
+              </select>
+            
+            </div>
+            <div style="width: 50%;">
+              
+              <label for="state">State</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" dir="auto" autocomplete="off" id="state" value="">
+              
+              <label for="type">Type</label>
+              <input style="width: 98%;" class="addOrderInput" type="text" placeholder="requird" dir="auto" autocomplete="off" id="type" value="">
+              
+            </div>
+          </div>
+
+
+          <br>
+
+
+
+          <div style="width: 100%;">
+            <label for="Note1">Note1</label>
+            <input style="width: 98%; font-size: 20px;" class="addOrderInput" type="text" dir="auto" autocomplete="off" id="Note1" value="">
+          </div>
+
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width:50%;">
+              <label for="Req1">Req1</label>
+              <select class="addOrderInput" style="width: 98%; font-size: 20px;" name="cars" id="Req1">
+                <option value=""></option>
+                <option value="A1">A1</option>
+                <option value="B2">B2</option>
+                <option value="C3">C3</option>
+                <option value="D4">D4</option>
+              </select>
+            </div>
+
+            <div style="width:50%;">
+              <label for="Date1">Date1</label>
+              <input style="width: 98%; font-size: 18px;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="Date1" value="">
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <div style="width: 100%;">
+            <label for="Note2">Note2</label>
+            <input style="width: 98%; font-size: 20px;" class="addOrderInput" type="text" dir="auto" autocomplete="off" id="Note2" value="">
+          </div>
+
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width:50%;">
+              <label for="Req2">Req2</label>
+              <select class="addOrderInput" style="width: 98%; font-size: 20px;" name="cars" id="Req2">
+                <option value=""></option>
+                <option value="A1">A1</option>
+                <option value="B2">B2</option>
+                <option value="C3">C3</option>
+                <option value="D4">D4</option>
+              </select>
+            </div>
+
+            <div style="width:50%;">
+              <label for="Date2">Date2</label>
+              <input style="width: 98%; font-size: 18px;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="Date2" value="">
+            </div>
+          </div>
+
+          
+
+
+
+
+
+
+          <div style="width: 100%;">
+            <label for="Note3">Note3</label>
+            <input style="width: 98%; font-size: 20px;" class="addOrderInput" type="text" dir="auto" autocomplete="off" id="Note3" value="">
+          </div>
+
+
+          <div style="width: 100%; display:flex; justify-content: space-between;">
+            <div style="width:50%;">
+              <label for="Req3">Req3</label>
+              <select class="addOrderInput" style="width: 98%; font-size: 20px;" name="cars" id="Req3">
+                <option value=""></option>
+                <option value="A1">A1</option>
+                <option value="B2">B2</option>
+                <option value="C3">C3</option>
+                <option value="D4">D4</option>
+              </select>
+            </div>
+
+            <div style="width:50%;">
+              <label for="Date3">Date3</label>
+              <input style="width: 98%; font-size: 18px;" class="addOrderInput" type="date" dir="auto" autocomplete="off" id="Date3" value="">
+            </div>
+          </div>
+
+
+          
+      </div>
+      
+      
+      `,
+      confirmButtonText: 'Ok',
+  }).then((result) => {    
+      if (result.isConfirmed) {
+
+          let date = document.querySelector("#date").value;
+          let name=document.querySelector("#name").value;
+          let phone1=document.querySelector("#phone1").value;
+          let phone2=document.querySelector("#phone2").value;
+          let note=document.querySelector("#note").value;
+          let by=document.querySelector("#by").value;
+          let state=document.querySelector("#state").value;
+          let type=document.querySelector("#type").value;
+          let more=[
+            {
+              Note1: document.querySelector("#Note1").value,
+              Req1: document.querySelector("#Req1").value,
+              Date1: document.querySelector("#Date1").value,
+              Note2: document.querySelector("#Note2").value,
+              Req2: document.querySelector("#Req2").value,
+              Date2: document.querySelector("#Date2").value,
+              Note3: document.querySelector("#Note3").value,
+              Req3: document.querySelector("#Req3").value,
+              Date3: document.querySelector("#Date3").value,
+            }
+          ]
+
+          function idGenerator() {
+            var S4 = function() {
+              return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+            };
+            return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+          };
+
+          let id = idGenerator();
+
+          if(name.trim()!==""&&phone1.trim()!==""&&by.trim()!==""&&state.trim()!==""&&type.trim()!==""){
+            AddNewStudent(name,phone1,phone2,note,by,state,type,date);
+          } else{
+            Swal.fire('error please enter value in required fileds', '', 'error')
+          }
+
+          
+          function AddNewStudent(name,phone1,phone2,note,by,state,type,date){
+            let randomStudentNumber = (Math.random()*1000000).toFixed();
+            setDoc(doc(db,"Persons",id), {
+              id: id,
+              name: name,
+              phone1: phone1,
+              phone2: phone2,
+              note: note,
+              by: by,
+              state: state,
+              more: more,
+              type: type,
+              user: document.querySelector("#user").value,
+              DateYearMothDay: `${new Date().getFullYear()}/${new Date().getMonth()+1}/${new Date().getDate()}`,
+              date: date,
+              time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+              dateNow: Date.now(),
+              randomStudentNumber: randomStudentNumber,
+              isAccepted: true,
+            }).then(e=>{
+           
+
+            });
+
+            setDoc(doc(db,"copyOfImportantStudent",id), {
+              id: id,
+              name: name,
+              phone1: phone1,
+              type: type,
+              user: document.querySelector("#user").value,
+              DateYearMothDay: `${new Date().getFullYear()}/${new Date().getMonth()+1}/${new Date().getDate()}`,
+              date: date,
+              time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+              dateNow: Date.now(),
+              randomStudentNumber: randomStudentNumber,
+              isAccepted: true,
+            })
+
+
+
+
+          };
+          
+      };
+  });
+
+});
+
+
+/* 5 end add new order */
+
+
+
+
+
+function getDate(){
+  
+  const d = new Date();
+  
+  let year = Date().getFullYear();
+  let month = Date().getMonth();
+  let day = Date().getDate();
+  let hour = Date().getHours();
+  let mint = Date().getMinutes();
+  
+  if(mint<10){
+    mint=`0${mint}`
+  }
+  
+ 
+
+      
+  let Date=[
+    {
+      dateNow:`${Date().getFullYear()}/${Date().getMonth()+1}/${Date().getDate()}`,
+      timeNow: `${Date().getHours()}:${Date().getMinutes()}`,
+    }
+  ]
+
+  return Date;
+}
+
+
+
+
+function showTeachers(){
+  document.querySelector(".teachers").innerHTML=`
+    <option value="admin">admin</option>
+  `
+  AllTeachers.forEach(e=>{
+    document.querySelector(".teachers").innerHTML+=`
+      <option value="${e.username}">${e.username}</option>
+    `;
+  })
+}
+
+
+
+
+
+
+
+const colRef= collection(db,"Persons");
+let limitToFirst=0;
+
+
+onSnapshot(colRef,async()=>{
+
+  if(limitToFirst==0){
+    getAllOrdersAccepted();
+  } else {
+    getAllOrdersAccepted(limitToFirst);
+  }
+  
+});
+
+
+
+
+
+
+
+
+/* start limitToFirst btn */
+
+document.querySelector(".limitToFirst").addEventListener("change",(e)=>{
+
+limitToFirst=e.srcElement.value;
+
+getAllOrdersAccepted(limitToFirst);
+  
+}
+
+
+
+);
+
+/* end limitToFirst btn */
+
+
+
+
+
+
+
+/* start report section */
+
+
+document.querySelector(".whoDetalls").addEventListener("change",(e)=>{
+
+let filterWith=e.srcElement.value;
+
+
+if((filterWith).trim()=="All"){
+
+  toShowAllOrders(AllPersonsData);
+
+} else if((filterWith).trim()!=="All"){
+  
+  let AllStudentByUser=AllPersonsData.filter(el=>el.user==`${(filterWith).trim()}`);
+  toShowAllOrders(AllStudentByUser);
+  
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* start search in students names oninput */
+/*
+
+document.querySelector(".searchBtn").addEventListener("input",()=>{
+  
+let filterWith=document.querySelector(".searchBtn").value;
+document.querySelector(".whoDetalls").value='All'
+  
+if((filterWith).trim()!==""){
+
+  let AllStudentNameIncludes=AllPersonsData.filter(el=>`${el.name}`.includes(`${(filterWith).trim()}`)==true);
+  toShowAllOrders(AllStudentNameIncludes);
+
+} else if((filterWith).trim()==""){
+  toShowAllOrders(AllPersonsData);
+}
+  
+  
+})
+
+
+*/
+
+function toShowAllOrders(x){
+document.querySelector("#AllOrders").innerHTML="";
+
+let i=0;
+
+
+x.forEach(el=>{
+  let I=0;
+  if(el.user!==""){
+    i++;
+    
+    document.querySelector("#AllOrders").innerHTML+=`
+
+
+      <tr data-id="${el.id}" style="font-weight: 600;">
+
+        <td class="Student-Id">#${i}</td>
+        <td class="Student-Date">${el.date}</td>
+        <td class="Student-Time">${el.time}</td>
+        <td class="Student-Name">${el.name}</td>
+        <td class="Student-Phone1">${el.phone1}</td>
+        <td class="Student-Phone2">${el.phone2}</td>
+        <td class="Student-Question-Details" style="max-width: 100px!important;">
+          <p style="white-space: break-spaces;">${el.note}</p>
+        </td>
+        <td class="Student-By">${el.by}</td>
+        <td class="Student-State">${el.state}</td>
+        <td class="Student-User">${el.user}</td>
+        <td class="Student-Type">${el.type}</td>
+
+        <td class="Student-Note1">${el.more[0].Note1}</td>
+        <td class="Student-Note1">${el.more[0].Req1}</td>
+        <td class="Student-Note1">${el.more[0].Date1}</td>
+
+        <td class="Student-Note1">${el.more[0].Note2}</td>
+        <td class="Student-Note1">${el.more[0].Req2}</td>
+        <td class="Student-Note1">${el.more[0].Date2}</td>
+
+        <td class="Student-Note1">${el.more[0].Note3}</td>
+        <td class="Student-Note1">${el.more[0].Req3}</td>
+        <td class="Student-Note1">${el.more[0].Date3}</td>
+
+
+        <td class="Student-More-Info" style="padding: 10px;">
+          
+          <a style="position: relative; top: -3px;">
+            <i title="تعديل" class="fa-solid fa-pen-to-square editStudent" data-id="${el.id}" style="font-size: 15px; color: #e0dfdf; background: #233245; border-radius: 50%; padding: 5px 5px; cursor: pointer;"></i>
+          </a>
+
+          <a style="position: relative; top: -3px;">
+            <i title="حذف" class="fa-solid fa-trash removeStudent" data-id="${el.id}" style="font-size: 15px; color: white; background: darkred; border-radius: 50%; padding: 6px 8px; cursor: pointer;"></i>
+          </a>
+
+          <a href="http://wa.me/+20${el.phone1}" target="_blank">
+            <i class="fa-brands fa-whatsapp"  data-id="${el.id}" style="font-size: 25px; color: white; background: green; border-radius: 50%; padding: 3px 4px; cursor: pointer;"></i>
+          </a>
+          
+        </td>
+
+      </tr>
+               
+    `;
+  }
+
+  
+});
+};
+
+
+/* end search in students names oninput */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* start search in firebase doc (search in students) */
+
+
+document.querySelector(".SearchBtn").addEventListener("click",async ()=>{
+
+  let SearchField = document.querySelector(".SearchField").value;
+  let SearchInput = document.querySelector(".SearchInput").value;
+
+  if(SearchField.trim()!==""){
+
+    const q = query(collection(db, "Persons"), where(SearchField, '==', SearchInput));
+  
+    const querySnapshot = await getDocs(q);
+    const cityList = querySnapshot.docs.map(doc => doc.data());
+    AllOrdersAccepted=cityList;
+
+    console.log(AllOrdersAccepted);
+
+    document.querySelector("#AllOrders").innerHTML=``;
+
+    let i = 1;
+
+    AllOrdersAccepted.forEach(el=>{
+      document.querySelector("#AllOrders").innerHTML+=`
+
+      <tr data-id="${el.id}" style="font-weight: 600;">
+
+        <td class="Student-Id">#${i}</td>
+        <td class="Student-Date">${el.date}</td>
+        <td class="Student-Time">${el.time}</td>
+        <td class="Student-Name">${el.name}</td>
+        <td class="Student-Phone1">${el.phone1}</td>
+        <td class="Student-Phone2">${el.phone2}</td>
+        <td class="Student-Question-Details" style="max-width: 100px!important;">
+          <p style="white-space: break-spaces;">${el.note}</p>
+        </td>
+        <td class="Student-By">${el.by}</td>
+        <td class="Student-State">${el.state}</td>
+        <td class="Student-User">${el.user}</td>
+        <td class="Student-Type">${el.type}</td>
+
+        <td class="Student-Note1">${el.more[0].Note1}</td>
+        <td class="Student-Note1">${el.more[0].Req1}</td>
+        <td class="Student-Note1">${el.more[0].Date1}</td>
+
+        <td class="Student-Note1">${el.more[0].Note2}</td>
+        <td class="Student-Note1">${el.more[0].Req2}</td>
+        <td class="Student-Note1">${el.more[0].Date2}</td>
+
+        <td class="Student-Note1">${el.more[0].Note3}</td>
+        <td class="Student-Note1">${el.more[0].Req3}</td>
+        <td class="Student-Note1">${el.more[0].Date3}</td>
+
+
+        <td class="Student-More-Info" style="padding: 10px;">
+          
+          <a style="position: relative; top: -3px;">
+            <i title="تعديل" class="fa-solid fa-pen-to-square editStudent" data-id="${el.id}" style="font-size: 15px; color: #e0dfdf; background: #233245; border-radius: 50%; padding: 5px 5px; cursor: pointer;"></i>
+          </a>
+
+          <a style="position: relative; top: -3px;">
+            <i title="حذف" class="fa-solid fa-trash removeStudent" data-id="${el.id}" style="font-size: 15px; color: white; background: darkred; border-radius: 50%; padding: 6px 8px; cursor: pointer;"></i>
+          </a>
+
+          <a href="http://wa.me/+20${el.phone1}" target="_blank">
+            <i class="fa-brands fa-whatsapp"  data-id="${el.id}" style="font-size: 25px; color: white; background: green; border-radius: 50%; padding: 3px 4px; cursor: pointer;"></i>
+          </a>
+          
+        </td>
+
+      </tr>
+              
+    `;
+
+    });
+    
+  }
+
+});
+
+
+/* end search in firebase doc (search in students) */
+
+
+
+
+
+
+</script>
+
+</html>
