@@ -156,6 +156,36 @@
 
 
 
+      .fl-table td {
+          min-width: 150px;
+      }
+
+      .Student-Question-Details{
+        min-width: 400px!important;
+        max-width: 400px!important;
+      }
+
+      #AllOrders{
+        font-weight: bold!important;
+      }
+
+
+
+      .excel{
+        margin: 0px 5px;
+        padding: 5px;
+        font-size: 15px;
+        background: white;
+        color: black;
+        border: 2px solid black;
+        border-radius: 6px;
+        text-align: end;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+
+
     </style>
 
   </head>
@@ -188,7 +218,8 @@
                 <option value="1000">1000</option>
                 <option value="2000">2000</option>
                 <option value="10000">10000</option>
-              </select>              
+              </select>   
+              <button class="excel">download excel</button>     
             </div>
   
             <div class="SearchDiv" style="background: #0a1951; border-radius: 6px; border: none; padding: 5px;">
@@ -202,6 +233,7 @@
               </select>
               <input type="text" placeholder="Search text" class="addOrderInput SearchInput" style="max-width: 150px; font-size: 20px;">
               <button class="SearchBtn" style="cursor: pointer; font-size: 20px;background: white;color: black;padding: 5px;border: 2px solid black;border-radius: 6px;text-align: end;font-weight: bold;">Search</button>
+              
             </div>
 
           </div>
@@ -277,6 +309,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script>
 
   <script type="module">
 
@@ -1365,6 +1398,31 @@ document.querySelector(".SearchBtn").addEventListener("click",async ()=>{
 /* end search in firebase doc (search in students) */
 
 
+
+
+
+/* start excel btn */
+
+
+document.querySelector(".excel").addEventListener("click",()=>{
+  ExportData()
+})
+
+
+
+function ExportData(){
+  console.log(AllOrdersAccepted)
+  var filename='reports.xlsx';
+  var data=AllOrdersAccepted
+  var ws = XLSX.utils.json_to_sheet(data);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "People");
+  XLSX.writeFile(wb,filename);
+}
+
+
+
+/* end excel btn */
 
 
 

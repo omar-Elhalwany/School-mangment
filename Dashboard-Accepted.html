@@ -155,6 +155,35 @@
       }
 
 
+      .fl-table td {
+          min-width: 150px;
+      }
+
+      .Student-Question-Details{
+        min-width: 400px!important;
+        max-width: 400px!important;
+      }
+
+      #AllOrders{
+        font-weight: bold!important;
+      }
+
+
+
+      .excel{
+        margin: 0px 5px;
+        padding: 5px;
+        font-size: 15px;
+        background: white;
+        color: black;
+        border: 2px solid black;
+        border-radius: 6px;
+        text-align: end;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+
 
     </style>
 
@@ -190,7 +219,9 @@
                 <option value="10000">10000</option>
               </select>
               <select class="whoDetalls">
+              
               </select>
+              <button class="excel">download excel</button>
               <!-- <input type="text" placeholder="Search With Student Name"  class="addOrderInput searchBtn" style="max-width: 300px; font-size: 20px;"> -->
               
             </div>
@@ -292,6 +323,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script> 
+  
 
   <script type="module">
 
@@ -543,7 +576,7 @@ async function getAllOrdersAccepted(X){
                     <td class="Student-Name">${el.name}</td>
                     <td class="Student-Phone1">${el.phone1}</td>
                     <td class="Student-Phone2">${el.phone2}</td>
-                    <td class="Student-Question-Details" style="max-width: 100px!important;">
+                    <td class="Student-Question-Details" style="">
                       <p style="white-space: break-spaces;">${el.note}</p>
                     </td>
                     <td class="Student-By">${el.by}</td>
@@ -1321,7 +1354,7 @@ x.forEach(el=>{
         <td class="Student-Name">${el.name}</td>
         <td class="Student-Phone1">${el.phone1}</td>
         <td class="Student-Phone2">${el.phone2}</td>
-        <td class="Student-Question-Details" style="max-width: 100px!important;">
+        <td class="Student-Question-Details" style="">
           <p style="white-space: break-spaces;">${el.note}</p>
         </td>
         <td class="Student-By">${el.by}</td>
@@ -1473,6 +1506,37 @@ document.querySelector(".SearchBtn").addEventListener("click",async ()=>{
 
 
 /* end search in firebase doc (search in students) */
+
+
+
+
+
+
+/* start excel btn */
+
+
+document.querySelector(".excel").addEventListener("click",()=>{
+  ExportData()
+})
+
+
+
+function ExportData(){
+  console.log(AllOrdersAccepted)
+  var filename='reports.xlsx';
+  var data=AllOrdersAccepted
+  var ws = XLSX.utils.json_to_sheet(data);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "People");
+  XLSX.writeFile(wb,filename);
+}
+
+
+
+/* end excel btn */
+
+
+
 
 
 
